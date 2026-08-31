@@ -14,6 +14,7 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../navigation/types";
 import { buscarPacientePorCpf } from "../../services/pacienteService";
 import { isNetworkError } from "../../services/api";
+import { mensagemErroApi } from "../../utils/apiErro";
 
 type Props = {
  navigation: NativeStackNavigationProp<RootStackParamList, "LoginPaciente">;
@@ -44,7 +45,7 @@ export default function LoginPacienteScreen({ navigation }: Props) {
  "Servidor indisponivel. Verifique se o backend esta rodando e tente novamente."
  );
  } else {
- setErro("CPF nao encontrado. Verifique ou crie um cadastro.");
+ setErro(mensagemErroApi(error, "CPF nao encontrado. Verifique ou crie um cadastro."));
  }
  } finally {
  setCarregando(false);
